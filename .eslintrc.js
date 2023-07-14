@@ -1,7 +1,13 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     root: true,
-    extends: ['airbnb', 'next/core-web-vitals', 'plugin:@typescript-eslint/eslint-recommended', 'prettier'],
+    extends: [
+        'airbnb',
+        'next/core-web-vitals',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'prettier',
+        'plugin:react-hooks/recommended'
+    ],
     parserOptions: {
         ecmaVersion: 2018,
         sourceType: 'module',
