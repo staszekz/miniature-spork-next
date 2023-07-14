@@ -10,17 +10,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/server": "^11.11.0",
-    "@mantine/core": "^6.0.16",
-    "@mantine/dates": "^6.0.16",
+    "@mantine/core": "^7.0.0-alpha.17",
     "@mantine/form": "^6.0.16",
-    "@mantine/hooks": "^6.0.16",
-    "@mantine/modals": "^6.0.16",
+    "@mantine/hooks": "^7.0.0-alpha.17",
     "@mantine/next": "^6.0.16",
-    "@mantine/notifications": "^6.0.16",
-    "@mantine/nprogress": "^6.0.16",
-    "@mantine/prism": "^6.0.16",
+    "@mantine/utils": "^6.0.16",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
@@ -45,6 +39,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^7.0.0",
     "lint-staged": "^13.2.2",
+    "postcss": "^8.4.26",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^2.8.8"
   }
 }

@@ -1,6 +1,6 @@
 'use client';
 import Head from 'next/head';
-import { Box, Button, Center, Container, NavLink } from '@mantine/core';
+import { Box, Button, Center, Container } from '@mantine/core';
 import Link from 'next/link';
 
 export default function Home() {
@@ -14,9 +14,9 @@ export default function Home() {
             </Head>
             <Container className="box">
                 <Center h={724} mx="auto">
-                    <Link href="/shopping-list" passHref>
-                        <Button>Jakaś lista zakupów</Button>
-                    </Link>
+                    <Button component={Link} href="/shopping-list">
+                        Jakaś lista zakupów
+                    </Button>
                 </Center>
             </Container>
         </>
