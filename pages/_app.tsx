@@ -2,7 +2,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 
-import Layout from '../src/components/layout';
+import { Layout } from '@components';
 
 export default function App(props: AppProps) {
     const { Component, pageProps } = props;

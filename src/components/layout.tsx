@@ -2,7 +2,7 @@ import { Grid, SimpleGrid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { Navigation } from './navigation';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }) {
     const largeScreen = useMediaQuery('(min-width: 60em)');
     return (
         <Grid>
