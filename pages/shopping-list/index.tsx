@@ -38,7 +38,7 @@ export default function ShoppingList() {
                     <Card shadow="sm" padding="lg" radius="md" withBorder bg={'teal.2'} w={350}>
                         <Card.Section>
                             <Image
-                                alt="Picture of the author"
+                                alt="List if shopping items"
                                 height={120}
                                 withPlaceholder
                                 src="/images/shopping-list.jpg"
