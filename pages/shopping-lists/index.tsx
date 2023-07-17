@@ -27,7 +27,7 @@ export default function ShoppingList() {
 
             <Group>
                 {lists.map((list, i) => (
-                    <ShoppingListCard list={list} index={i} />
+                    <ShoppingListCard key={list.id} list={list} index={i} />
                 ))}
             </Group>
             <Button color="teal" mb={40} variant="outline" size="md" radius="md" href="/" component={Link}>
