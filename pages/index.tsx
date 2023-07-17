@@ -11,8 +11,8 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container className="box">
-                <Center h={724} mx="auto">
-                    <Button color="teal" component={Link} href="/shopping-list">
+                <Center mih={'100vh'} mx="auto">
+                    <Button color="teal" component={Link} href="/shopping-lists">
                         Zobacz swoje listy zakupów
                     </Button>
                 </Center>
