@@ -13,7 +13,7 @@ export default function Home() {
             <Container className="box">
                 <Center h={724} mx="auto">
                     <Button color="teal" component={Link} href="/shopping-list">
-                        Jakaś lista zakupów
+                        Zobacz swoje listy zakupów
                     </Button>
                 </Center>
             </Container>
