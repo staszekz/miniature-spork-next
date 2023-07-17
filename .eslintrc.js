@@ -1,20 +1,13 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     root: true,
-    extends: [
-        'airbnb',
-        'next/core-web-vitals',
-        'plugin:@typescript-eslint/eslint-recommended',
-        'prettier',
-        'plugin:react-hooks/recommended'
-    ],
+    extends: ['airbnb', 'next/core-web-vitals', 'plugin:@typescript-eslint/eslint-recommended', 'prettier'],
     parserOptions: {
         ecmaVersion: 2018,
         sourceType: 'module',
         tsconfigRootDir: __dirname,
         project: './tsconfig.json'
     },
-    plugins: ['react-hooks', 'prettier', '@typescript-eslint/eslint-plugin'],
     rules: {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
