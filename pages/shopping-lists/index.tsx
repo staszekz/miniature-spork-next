@@ -23,19 +23,21 @@ import { IconPlaylistAdd } from '@tabler/icons-react';
 
 export default function ShoppingList() {
     return (
-        <Stack>
-            <Title ta="center" order={1}>
-                Listy Zakupów
-            </Title>
-            <Tooltip label="Dodaj nową listę zakupów">
-                <Button color="teal">
-                    <IconPlaylistAdd />
-                </Button>
-            </Tooltip>
+        <Stack align="center" justify="space-between" h="100%" spacing={'xl'}>
+            <Group>
+                <Title ta="center" order={1}>
+                    Listy Zakupów
+                </Title>
+                <Tooltip label="Dodaj nową listę zakupów">
+                    <Button color="teal">
+                        <IconPlaylistAdd />
+                    </Button>
+                </Tooltip>
+            </Group>
 
             <Group>
                 {lists.map((list, i) => (
-                    <Card shadow="sm" padding="lg" radius="md" withBorder bg={'teal.2'} w={350}>
+                    <Card key={list.id} shadow="sm" padding="lg" radius="md" withBorder bg={'teal.2'} w={350}>
                         <Card.Section>
                             <Image
                                 alt="List if shopping items"
