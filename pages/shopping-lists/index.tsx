@@ -1,58 +1,33 @@
 'use client';
-import {
-    Box,
-    Button,
-    Paper,
-    Stack,
-    Table,
-    Title,
-    Text,
-    Group,
-    Tooltip,
-    Container,
-    Card,
-    Image,
-    Badge
-} from '@mantine/core';
-
-import styles from './styles.module.css';
-
+import { Button, Stack, Table, Title, Text, Group, Tooltip, Card, Badge, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
-import { lists } from '../../utils/data';
 import { IconPlaylistAdd } from '@tabler/icons-react';
 
+import { AddNewShoppingList, ShoppingListCard } from '@components';
+import { lists } from '@utils';
+
 export default function ShoppingList() {
+    const [opened, { open, close }] = useDisclosure(false);
     return (
-        <Stack align="center" justify="space-between" h="100%" spacing={'xl'}>
+        <Stack align="center" justify="space-between" mih="100vh">
+            <Modal opened={opened} onClose={close} centered>
+                <AddNewShoppingList />
+            </Modal>
             <Group>
                 <Title ta="center" order={1}>
                     Listy Zakupów
                 </Title>
                 <Tooltip label="Dodaj nową listę zakupów">
                     <Button color="teal">
-                        <IconPlaylistAdd />
+                        <IconPlaylistAdd onClick={open} />
                     </Button>
                 </Tooltip>
             </Group>
 
             <Group>
                 {lists.map((list, i) => (
-                    <Card key={list.id} shadow="sm" padding="lg" radius="md" withBorder bg={'teal.2'} w={350}>
-                        <Card.Section>
-                            <Image
-                                alt="List if shopping items"
-                                height={120}
-                                withPlaceholder
-                                src="/images/shopping-list.jpg"
-                            />
-                        </Card.Section>
-                        <Group position="apart" mt="md" mb="xs">
-                            <Text weight={500}>Lista {i + 1}:</Text>
-                            <Badge color="pink" variant="light">
-                                Nowa
-                            </Badge>
-                        </Group>
-                    </Card>
+                    <ShoppingListCard list={list} index={i} />
                 ))}
             </Group>
             <Button color="teal" mb={40} variant="outline" size="md" radius="md" href="/" component={Link}>

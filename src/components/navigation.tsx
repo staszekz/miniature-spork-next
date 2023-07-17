@@ -7,14 +7,10 @@ import { IconReceipt2, IconLogout, IconHome, IconToolsKitchen } from '@tabler/ic
 
 const useStyles = createStyles((theme) => ({
     header: {
-        paddingBottom: theme.spacing.md,
-        marginBottom: `calc(${theme.spacing.md} * 1.5)`,
         borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]}`
     },
 
     footer: {
-        paddingTop: theme.spacing.md,
-        marginTop: theme.spacing.md,
         borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]}`
     },
 
@@ -78,14 +74,14 @@ export function Navigation() {
     });
 
     return (
-        <Navbar mih={'100%'} p="md">
+        <Navbar p="md">
             <Navbar.Section grow>{links}</Navbar.Section>
 
             <Navbar.Section className={classes.footer}>
-                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+                <Link href="#" className={classes.link}>
                     <IconLogout className={classes.linkIcon} stroke={1.5} />
                     <span>Logout</span>
-                </a>
+                </Link>
             </Navbar.Section>
         </Navbar>
     );
