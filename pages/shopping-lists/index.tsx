@@ -1,8 +1,10 @@
 'use client';
+
 import { Button, Stack, Table, Title, Text, Group, Tooltip, Card, Badge, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import Link from 'next/link';
+
 import { IconPlaylistAdd } from '@tabler/icons-react';
+import Link from 'next/link';
 
 import { AddNewShoppingList, ShoppingListCard } from '@components';
 import { lists } from '@utils';

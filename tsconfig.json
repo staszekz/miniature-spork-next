@@ -20,7 +20,7 @@
             }
         ],
         "paths": {
-            "@hooks": ["./src/hooks/index"], // example absolute import
+            "@hooks": ["./src/hooks/"], // example absolute import
             "@components": ["./src/components/index"],
             "@utils": ["./src/utils/index"],
             "@public/*": ["./public/*"],
