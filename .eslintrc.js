@@ -8,6 +8,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json'
     },
+    plugins: ['prettier', '@typescript-eslint/eslint-plugin'],
     rules: {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
@@ -26,8 +27,8 @@ module.exports = {
         'react/function-component-definition': [
             2,
             {
-                namedComponents: 'arrow-function',
-                unnamedComponents: 'arrow-function'
+                namedComponents: 'arrow-function' | 'function-declaration',
+                unnamedComponents: 'arrow-function' | 'function-declaration'
             }
         ],
         'import/extensions': 'off',

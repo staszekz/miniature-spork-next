@@ -1,5 +1,1 @@
-import React from 'react';
-
-export function AddNewShoppingList() {
-    return <div>addNewShoppingList</div>;
-}
+export const AddNewShoppingList = () => <div>addNewShoppingList</div>;
