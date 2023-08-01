@@ -1,6 +1,7 @@
 'use client';
+
+import { Button, Center, Container } from '@mantine/core';
 import Head from 'next/head';
-import { Box, Button, Center, Container } from '@mantine/core';
 import Link from 'next/link';
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container className="box">
-                <Center mih={'100vh'} mx="auto">
+                <Center>
                     <Button color="teal" component={Link} href="/shopping-lists">
                         Zobacz swoje listy zakupów
                     </Button>

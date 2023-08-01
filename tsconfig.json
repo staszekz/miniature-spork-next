@@ -22,6 +22,7 @@
         "paths": {
             "@hooks": ["./src/hooks/"], // example absolute import
             "@components": ["./src/components/index"],
+            "@templates": ["./src/templates/index"],
             "@utils": ["./src/utils/index"],
             "@public/*": ["./public/*"],
             "@types": ["./src/types/index"]

@@ -1,9 +1,10 @@
 'use client';
+
 import { Card, Group, Image, Text, Badge } from '@mantine/core';
 
 import { CardProps } from '@types';
 
-import { ShoppingListTable } from './shopping-list-table';
+import { ShoppingListTable } from '../shopping-list-table/shopping-list-table';
 
 export const ShoppingListCard = ({ list, index }: CardProps) => (
     <Card shadow="sm" padding="lg" radius="md" withBorder bg="teal.2" w={350}>
