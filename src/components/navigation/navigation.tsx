@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { createStyles, Navbar, getStylesRef, rem } from '@mantine/core';
 import { IconReceipt2, IconLogout, IconHome, IconToolsKitchen } from '@tabler/icons-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -58,7 +58,7 @@ const data = [
     { link: '/recipes', label: 'Przepisy', icon: IconToolsKitchen }
 ];
 
-export function Navigation() {
+export function Navigation({ opened }: { opened: boolean }) {
     const { classes, cx } = useStyles();
     const pathname = usePathname();
 
@@ -74,11 +74,11 @@ export function Navigation() {
     });
 
     return (
-        <Navbar p="md">
+        <Navbar p="md" width={{ base: '100%', md: 300 }} hiddenBreakpoint="sm" hidden={!opened}>
             <Navbar.Section grow>{links}</Navbar.Section>
 
             <Navbar.Section className={classes.footer}>
-                <Link href="#" className={classes.link}>
+                <Link href="/" className={classes.link}>
                     <IconLogout className={classes.linkIcon} stroke={1.5} />
                     <span>Logout</span>
                 </Link>

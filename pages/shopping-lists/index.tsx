@@ -1,8 +1,7 @@
 'use client';
 
-import { Button, Stack, Table, Title, Text, Group, Tooltip, Card, Badge, Modal } from '@mantine/core';
+import { Button, Stack, Title, Group, Tooltip, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-
 import { IconPlaylistAdd } from '@tabler/icons-react';
 import Link from 'next/link';
 
@@ -12,7 +11,7 @@ import { lists } from '@utils';
 export default function ShoppingList() {
     const [opened, { open, close }] = useDisclosure(false);
     return (
-        <Stack align="center" justify="space-between" mih="100vh">
+        <Stack align="center" justify="space-between">
             <Modal opened={opened} onClose={close} centered>
                 <AddNewShoppingList />
             </Modal>
