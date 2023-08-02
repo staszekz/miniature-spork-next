@@ -1,6 +1,7 @@
 'use client';
 
-import { Burger, MediaQuery, useMantineTheme, AppShell, Header } from '@mantine/core';
+import { Burger, MediaQuery, useMantineTheme, AppShell, Header, Flex } from '@mantine/core';
+import { IconBasketFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 
 import { Navigation } from '@components';
@@ -25,7 +26,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                             />
                         </MediaQuery>
 
-                        <div>Application header</div>
+                        <Flex gap={10}>
+                            Shop Ninja <IconBasketFilled />
+                        </Flex>
                     </div>
                 </Header>
             }
