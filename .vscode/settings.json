@@ -1,5 +1,5 @@
 {
-    "prettier.configPath": ".prettierrc",
+    "prettier.configPath": ".prettierrc.cjs",
     "prettier.useTabs": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[typescript]": {
