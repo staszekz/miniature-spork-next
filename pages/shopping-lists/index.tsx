@@ -12,7 +12,7 @@ export default function ShoppingList() {
     const [opened, { open, close }] = useDisclosure(false);
     return (
         <Stack align="center" justify="space-between">
-            <Modal opened={opened} onClose={close} centered>
+            <Modal opened={opened} onClose={close} centered closeOnClickOutside={false}>
                 <AddNewShoppingList />
             </Modal>
             <Group>
