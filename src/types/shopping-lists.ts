@@ -1,16 +1,20 @@
 import { StaticImageData } from 'next/image';
 
-export type Item = {
-    id: number | string;
+export type ListItem = {
+    id?: string;
     name: string;
-    price: number;
-    currency?: string;
-    category?: string;
-    image?: string | StaticImageData;
+    category?: string[];
+    unit?: string;
+    quantity?: number;
+};
+export type AddNewListModalInputs = {
+    id?: string;
+    shoppingListName: string;
+    item?: ListItem[];
 };
 export type ListElement = {
     id: string;
-    items: Item[];
+    items: ListItem[];
     image?: string | StaticImageData;
 };
 export type CardProps = {
