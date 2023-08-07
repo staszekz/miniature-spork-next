@@ -1,5 +1,7 @@
 'use client';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import {
     Button,
     TextInput,
@@ -14,19 +16,30 @@ import {
 import { useRef, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
-type Inputs = {
-    shoppingListName: string;
-    item: string;
-    type: string;
-    unit: string;
-    quantity: number;
+import { AddNewListModalInputs } from '@types';
+
+import { getAddNewListSchema } from '../schemas/new-list.schema';
+
+const test = new Intl.DateTimeFormat('pl-pl').format(new Date());
+const defaultValues = {
+    shoppingListName: `Lista z dnia ${test}`,
+    item: [
+        {
+            name: '',
+            category: [],
+            unit: '',
+            quantity: 0
+        }
+    ]
 };
 
 export const AddNewShoppingList = () => {
-    const form = useForm<Inputs>();
-    const handlers = useRef<NumberInputHandlers>(null);
-    const [value, setValue] = useState<number | ''>(0);
-    const [selected, setSelected] = useState({ value: '', label: '' });
+    const schema = getAddNewListSchema();
+    const form = useForm<AddNewListModalInputs>({
+        defaultValues,
+        resolver: yupResolver(schema)
+    });
+    const handlers = useRef<NumberInputHandlers>({ increment: () => {}, decrement: () => {} });
     const [dataMulti, setData] = useState([
         { value: 'react', label: 'React' },
         { value: 'ng', label: 'Angular' }
@@ -35,48 +48,55 @@ export const AddNewShoppingList = () => {
         register,
         handleSubmit,
         formState: { errors },
-        // getValues,
+        getValues,
         control
     } = form;
-    const test = new Intl.DateTimeFormat('pl-pl').format(new Date());
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-    // const values = getValues();
+    const onSubmit: SubmitHandler<AddNewListModalInputs> = (data) => {
+        // const newData = { id, shoppingListName: data.shoppingListName, item: data.item };
+        console.log('🚀 ~ newData:', data, 'casted: ', schema.cast(data));
+        return schema.cast(data);
+    };
+
+    const values = getValues();
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Stack>
-                <TextInput
-                    label="Nazwa listy zakupów"
-                    defaultValue={`Lista z dnia ${test}`}
-                    {...register('shoppingListName')}
-                />
+                <TextInput label="Nazwa listy zakupów" {...register('shoppingListName')} />
 
-                {/* include validation with required or other standard HTML validation rules */}
                 <TextInput
                     label="Nazwa produktu"
-                    error={errors.item?.message}
-                    {...register('item', { required: 'Field is required' })}
+                    error={errors?.item?.[0]?.name?.message}
+                    {...register(`item.${0}.name`)}
                 />
-
-                <MultiSelect
-                    label="Kategoria"
-                    error={errors.type?.message}
-                    data={dataMulti}
-                    placeholder="Wybierz kategorię ..."
-                    searchable
-                    creatable
-                    getCreateLabel={(query) => `+ Nowa kategoria: ${query}`}
-                    onCreate={(query) => {
-                        const item = { value: query, label: query };
-                        setData((current) => [...current, item]);
-                        return item;
-                    }}
-                    {...register('type', { required: 'Field is required' })}
+                <Controller
+                    control={control}
+                    name={`item.${0}.category`}
+                    render={(props) => (
+                        <MultiSelect
+                            label="Kategoria"
+                            error={errors?.item?.[0]?.category?.message}
+                            data={dataMulti}
+                            placeholder="Wybierz kategorię ..."
+                            searchable
+                            creatable
+                            getCreateLabel={(query) => `+ Nowa kategoria: ${query}`}
+                            onCreate={(query) => {
+                                const item = { value: query, label: query };
+                                setData((current) => [...current, item]);
+                                return item;
+                            }}
+                            {...register(`item.${0}.category`)}
+                            value={props.field.value}
+                            onChange={props.field.onChange}
+                        />
+                    )}
                 />
                 <Flex gap={12} justify="center" align="flex-end">
                     <Controller
                         control={control}
-                        name="unit"
+                        name={`item.${0}.unit`}
                         render={(props) => (
                             <Select
                                 data={[
@@ -84,33 +104,39 @@ export const AddNewShoppingList = () => {
                                     { value: 'pieces', label: 'szt.' }
                                 ]}
                                 label="Jednostka"
-                                value={selected.value}
-                                {...register('unit', { required: 'Field is required' })}
-                                {...props}
-                                onChange={(val) => setSelected(val)}
+                                {...register(`item.${0}.unit`)}
+                                value={props.field.value}
+                                onChange={props.field.onChange}
                             />
                         )}
                     />
-                    <ActionIcon size={36} variant="default" onClick={() => handlers.current.decrement()}>
-                        –
-                    </ActionIcon>
-                    <NumberInput
-                        w="100%"
-                        hideControls
-                        label="Ilość"
-                        handlersRef={handlers}
-                        precision={2}
-                        defaultValue={0}
-                        value={value}
-                        min={0}
-                        step={0.1}
-                        error={errors.quantity?.message}
-                        {...register('quantity', { required: 'Field is required', min: 0 })}
-                        onChange={(val) => setValue(val)}
+                    <Controller
+                        control={control}
+                        name={`item.${0}.quantity`}
+                        render={(props) => (
+                            <>
+                                <ActionIcon size={36} variant="default" onClick={() => handlers?.current?.decrement()}>
+                                    –
+                                </ActionIcon>
+                                <NumberInput
+                                    w="100%"
+                                    hideControls
+                                    label="Ilość"
+                                    precision={2}
+                                    min={0}
+                                    defaultValue={0}
+                                    handlersRef={handlers}
+                                    step={0.1}
+                                    error={errors?.item?.[0]?.quantity?.message}
+                                    {...register(`item.${0}.quantity`)}
+                                    onChange={props.field.onChange}
+                                />
+                                <ActionIcon size={36} variant="default" onClick={() => handlers?.current?.increment()}>
+                                    +
+                                </ActionIcon>
+                            </>
+                        )}
                     />
-                    <ActionIcon size={36} variant="default" onClick={() => handlers.current.increment()}>
-                        +
-                    </ActionIcon>
                 </Flex>
                 <Button type="submit">Submit</Button>
             </Stack>

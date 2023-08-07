@@ -1,6 +1,6 @@
 import ShoppingImage2 from '@public/images/shopping-list-2.jpg';
 import ShoppingImage from '@public/images/shopping-list.jpg';
-import { Item } from '@types';
+import { ListItem } from '@types';
 
 const shoppingItems = [
     { id: crypto.randomUUID(), name: 'chleb', price: 3, currency: 'PLN', category: 'pieczywo', image: ShoppingImage },
@@ -38,7 +38,7 @@ const shoppingItems = [
     }
 ];
 
-const shoppingItems2: Item[] = [
+const shoppingItems2: ListItem[] = [
     { id: crypto.randomUUID(), name: 'chleb', price: 3, currency: 'PLN', category: 'pieczywo', image: ShoppingImage },
     {
         id: crypto.randomUUID(),

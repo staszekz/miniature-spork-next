@@ -1,0 +1,12 @@
+export const stringMessage = 'Field must be text';
+export const dateMessage = 'Field must be a valid date';
+export const numberMessage = 'Field must be a valid number';
+export const booleanMessage = 'Field must be "Yes" or "No"';
+export const arrayMessage = 'Field must be a list';
+export const requiredMessage = 'Field is required';
+export const integerMessage = 'Field must be an integer';
+export const rangeMessage = (min: number, max: number) => `Value must be between ${min} and ${max}`;
+export const minMessage = (min: number) => `Value must be ${min} or greater`;
+export const maxTextMessage = (min: number) => `The text cannot exceed ${min} signs`;
+export const maxMessage = (min: number) => `Value must be ${min} or lower`;
+export const insertCorrectValueMessage = (attr: string) => `Insert a correct value for ${attr}.`;
