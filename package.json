@@ -34,7 +34,7 @@
     "@mantine/prism": "^6.0.17",
     "@mantine/spotlight": "^6.0.17",
     "@mantine/tiptap": "^6.0.17",
-    "@prisma/client": "5.1.0",
+    "@prisma/client": "^5.1.1",
     "@tabler/icons-react": "^2.30.0",
     "@tiptap/extension-link": "^2.0.4",
     "@tiptap/react": "^2.0.4",
@@ -42,6 +42,7 @@
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "embla-carousel-react": "^7.1.0",
     "mantine-react-table": "^1.0.0",
@@ -72,6 +73,6 @@
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^2.8.8",
-    "prisma": "^5.1.1"
+    "prisma": "5.1.1"
   }
 }
