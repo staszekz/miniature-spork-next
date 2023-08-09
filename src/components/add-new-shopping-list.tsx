@@ -37,7 +37,6 @@ export const AddNewShoppingList = () => {
     const {
         register,
         handleSubmit,
-        getValues,
         formState: { errors },
         control
     } = useForm<AddNewListModalInputs>({
@@ -50,15 +49,9 @@ export const AddNewShoppingList = () => {
         { value: 'ng', label: 'Angular' }
     ]);
 
-    const v = getValues();
-
     const onSubmit: SubmitHandler<AddNewListModalInputs> = async (dataV) => {
-        console.log('🚀 ~ data:dataV: ', dataV);
-        const { data } = await axios.post('/api/newlist', dataV);
-        console.log('🚀 ~ data:', data);
-
-        // const newData = { id, shoppingListName: data.shoppingListName, item: data.item };
-        // return data;
+        const { data } = await axios.post('/api/list', dataV);
+        return data;
     };
 
     return (

@@ -14,36 +14,25 @@ export default async function handler(
         setHeader: (arg0: string, arg1: string[]) => void;
     }
 ) {
-    const { method } = req;
-    console.log('🚀 ~ method:', method);
+    const { method, body } = req;
 
     switch (method) {
         case 'POST':
-            const data = req.body;
-            console.log('🚀 ~ prisma:', prisma, 'data', data);
             const result = await prisma.shoppingList.create({
                 data: {
-                    shoppingListName: data.shoppingListName,
-                    item: {
-                        connect: [
-                            {
-                                name: data.item[0].name,
-                                quantity: data.item[0].quantity,
-                                quantityType: data.item[0].unit,
-                                type: data.item[0].categoty
-                            }
-                        ]
+                    shoppingListName: body.shoppingListName,
+                    items: {
+                        create: {
+                            name: body.item[0].name,
+                            quantity: body.item[0].quantity,
+                            quantityType: body.item[0].unit,
+                            type: body.item[0].category[0]
+                        }
                     }
                 }
             });
-            // const result2 = await prisma.shoppingItem.create({
-            //     data: {
-
-            //     }
-            // });
 
             res.status(201).json(result);
-            // res.status(201).json(result2);
             break;
         default:
             res.setHeader('Allow', ['POST']);
