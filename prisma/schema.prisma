@@ -11,16 +11,17 @@ datasource db {
 }
 
 model ShoppingItem {
-  id    String   @id @default(uuid())
-  name      String
-  quantity  Decimal  @default(1)
+  id           String        @id @default(uuid())
+  name         String
+  quantity     Decimal
   quantityType String
-  type      String
-  addedAt   DateTime @default(now())
+  type         String
+  addedAt      DateTime      @default(now())
   shoppingList ShoppingList? @relation(fields: [id], references: [id])
 }
 
 model ShoppingList {
-  id             String        @id @default(uuid())
-  items  ShoppingItem[] 
+  id               String         @id @default(uuid())
+  shoppingListName String
+  items            ShoppingItem[]
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import {
     Button,
     TextInput,
@@ -13,6 +12,7 @@ import {
     Select,
     MultiSelect
 } from '@mantine/core';
+import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
@@ -34,31 +34,32 @@ const defaultValues = {
 };
 
 export const AddNewShoppingList = () => {
-    const schema = getAddNewListSchema();
-    const form = useForm<AddNewListModalInputs>({
+    const {
+        register,
+        handleSubmit,
+        getValues,
+        formState: { errors },
+        control
+    } = useForm<AddNewListModalInputs>({
         defaultValues,
-        resolver: yupResolver(schema)
+        resolver: yupResolver(getAddNewListSchema())
     });
     const handlers = useRef<NumberInputHandlers>({ increment: () => {}, decrement: () => {} });
     const [dataMulti, setData] = useState([
         { value: 'react', label: 'React' },
         { value: 'ng', label: 'Angular' }
     ]);
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        getValues,
-        control
-    } = form;
 
-    const onSubmit: SubmitHandler<AddNewListModalInputs> = (data) => {
+    const v = getValues();
+
+    const onSubmit: SubmitHandler<AddNewListModalInputs> = async (dataV) => {
+        console.log('🚀 ~ data:dataV: ', dataV);
+        const { data } = await axios.post('/api/newlist', dataV);
+        console.log('🚀 ~ data:', data);
+
         // const newData = { id, shoppingListName: data.shoppingListName, item: data.item };
-        console.log('🚀 ~ newData:', data, 'casted: ', schema.cast(data));
-        return schema.cast(data);
+        // return data;
     };
-
-    const values = getValues();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
