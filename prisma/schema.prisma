@@ -14,11 +14,11 @@ model ShoppingItem {
   quantityType String
   type         String
   addedAt      DateTime      @default(now())
-  shoppingList ShoppingList? @relation(fields: [id], references: [id])
+  // shoppingList ShoppingList? @relation(fields: [id], references: [id])
 }
 
 model ShoppingList {
   id               String         @id @default(uuid())
   shoppingListName String
-  items            ShoppingItem[] 
+  date             DateTime  @default(now())  
 }
