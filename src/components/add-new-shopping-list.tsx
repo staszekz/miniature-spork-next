@@ -35,7 +35,7 @@ export const AddNewShoppingList = () => {
         url: '/api/list',
         data: dataV
       });
-      return data; // add this line to explicitly return the response data
+      return data;
     } catch (error) {
       throw new Error("Couldn't add new list)");
     }
