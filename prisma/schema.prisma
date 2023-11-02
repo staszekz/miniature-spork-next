@@ -20,5 +20,5 @@ model ShoppingItem {
 model ShoppingList {
   id               String         @id @default(uuid())
   shoppingListName String
-  date             DateTime  @default(now())  
+  date             DateTime  @default(now())
 }
