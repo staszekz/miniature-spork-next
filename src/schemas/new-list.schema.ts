@@ -22,5 +22,4 @@ export const getAddNewListSchema = z.object({
   date: z.date()
   // item: array().of(getNewItemSchema()).required(requiredMessage).min(1)
 });
-
 export type AddNewListSchema = z.infer<typeof getAddNewListSchema>;
