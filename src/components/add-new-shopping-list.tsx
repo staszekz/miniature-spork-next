@@ -1,6 +1,6 @@
 'use client';
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, TextInput, Stack } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import axios from 'axios';
@@ -25,7 +25,7 @@ export const AddNewShoppingList = () => {
     control
   } = useForm<AddNewListModalInputs>({
     defaultValues,
-    resolver: yupResolver(getAddNewListSchema())
+    resolver: zodResolver(getAddNewListSchema)
   });
 
   const onSubmit: SubmitHandler<AddNewListModalInputs> = async dataV => {
