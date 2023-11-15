@@ -65,6 +65,9 @@ dependencies:
   embla-carousel-react:
     specifier: ^7.1.0
     version: 7.1.0(react@18.2.0)
+  git-cz:
+    specifier: ^4.9.0
+    version: 4.9.0
   mantine-react-table:
     specifier: ^1.0.0
     version: 1.0.0(@emotion/react@11.11.1)(@mantine/core@7.1.7)(@mantine/dates@7.1.7)(@mantine/hooks@7.1.7)(@tabler/icons-react@2.40.0)(react-dom@18.2.0)(react@18.2.0)
@@ -3704,6 +3707,11 @@ packages:
     dependencies:
       resolve-pkg-maps: 1.0.0
     dev: true
+
+  /git-cz@4.9.0:
+    resolution: {integrity: sha512-cSRL8IIOXU7UFLdbziCYqg8f8InwLwqHezkiRHNSph7oZqGv0togId1kMTfKil6gzK0VaSXeVBb4oDl0fQCHiw==}
+    hasBin: true
+    dev: false
 
   /git-raw-commits@2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==}
