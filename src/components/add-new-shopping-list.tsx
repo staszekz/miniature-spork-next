@@ -28,7 +28,10 @@ export const AddNewShoppingList = () => {
     resolver: zodResolver(getAddNewListSchema)
   });
 
+  console.log('🚀 ~ errors:', errors);
   const onSubmit: SubmitHandler<AddNewListModalInputs> = async dataV => {
+    console.log('🚀 ~ dataV:', dataV);
+
     try {
       const { data } = await axios<any>({
         method: 'post',

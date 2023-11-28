@@ -17,7 +17,7 @@ const newItemSchema = getNewItemSchema();
 export type NewItemSchema = z.infer<typeof newItemSchema>;
 
 export const getAddNewListSchema = z.object({
-  id: z.string().regex(regexExpUuid),
+  id: z.string().regex(regexExpUuid).optional(),
   shoppingListName: z.string(),
   date: z.date()
   // item: array().of(getNewItemSchema()).required(requiredMessage).min(1)

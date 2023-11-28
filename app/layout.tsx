@@ -17,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased">
         <MantineProvider>
-          {console.log('children', children)}
           <Layout>{children}</Layout>
         </MantineProvider>
       </body>
