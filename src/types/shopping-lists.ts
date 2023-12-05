@@ -13,6 +13,7 @@ export type AddNewListModalInputs = {
   shoppingListName: string;
   date: DateValue;
 };
+
 export type ListElement = {
   id: string;
   items: ListItem[];
