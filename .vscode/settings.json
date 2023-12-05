@@ -1,10 +1,13 @@
 {
-    "prettier.configPath": ".prettierrc.cjs",
+    "prettier.configPath": ".prettierrc",
     "prettier.useTabs": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.formatOnSave": true,
-    "git.enableCommitSigning": true
+    "git.enableCommitSigning": true,
+    "eslint.format.enable": false,
+    "eslint.run": "onSave",
+    "eslint.workingDirectories": []
 }

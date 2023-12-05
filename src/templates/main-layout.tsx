@@ -1,45 +1,59 @@
 'use client';
 
-import { Burger, MediaQuery, useMantineTheme, AppShell, Header, Flex } from '@mantine/core';
-import { IconBasketFilled } from '@tabler/icons-react';
-import { useState } from 'react';
+import { Burger, useMantineTheme, AppShell, Flex, Skeleton, NavLink } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconReceipt2, IconLogout, IconHome, IconToolsKitchen, IconBasketFilled } from '@tabler/icons-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { Navigation } from '@components';
+import '@mantine/core/styles.css';
 
+const data = [
+  { link: '/', label: 'Główna', icon: IconHome },
+  { link: '/shopping-lists', label: 'Listy zakupów', icon: IconReceipt2 },
+  { link: '/recipes', label: 'Przepisy', icon: IconToolsKitchen }
+];
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [opened, setOpened] = useState(false);
-    const theme = useMantineTheme();
+  const [opened, { toggle }] = useDisclosure();
+  const theme = useMantineTheme();
+  const pathname = usePathname();
+
+  const links = data.map(item => {
+    const isActive = pathname === item.link;
 
     return (
-        <AppShell
-            padding="md"
-            header={
-                <Header height={{ base: 50, md: 70 }} p="md">
-                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                            <Burger
-                                opened={opened}
-                                onClick={() => setOpened((o) => !o)}
-                                size="sm"
-                                color={theme.colors.gray[6]}
-                                mr="xl"
-                            />
-                        </MediaQuery>
-
-                        <Flex gap={10}>
-                            Shop Ninja <IconBasketFilled />
-                        </Flex>
-                    </div>
-                </Header>
-            }
-            styles={() => ({
-                main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] }
-            })}
-            navbarOffsetBreakpoint="sm"
-            asideOffsetBreakpoint="sm"
-            navbar={<Navigation opened={opened} />}
-        >
-            {children}
-        </AppShell>
+      <NavLink
+        component={Link}
+        leftSection={<item.icon stroke={1.5} />}
+        label={item.label}
+        href={item.link}
+        key={item.label}
+        active={isActive}
+      />
     );
+  });
+
+  return (
+    <AppShell
+      padding="md"
+      header={{ height: { base: 50, md: 70 } }}
+      navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: !opened } }}
+    >
+      <AppShell.Header p="md">
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <Burger opened={opened} onClick={toggle} size="sm" color={theme.colors.gray[6]} mr="xl" />
+
+          <Flex gap={10}>
+            Miniature Spork Store <IconBasketFilled />
+          </Flex>
+        </div>
+      </AppShell.Header>
+      <AppShell.Navbar p="md" hidden={!opened}>
+        {links}
+
+        <NavLink component={Link} leftSection={<IconLogout stroke={1.5} />} label="Logout" href="/" />
+      </AppShell.Navbar>
+      <AppShell.Main>{children}</AppShell.Main>
+    </AppShell>
+  );
 };

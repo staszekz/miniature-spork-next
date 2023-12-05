@@ -25,7 +25,7 @@
             "titleBar.inactiveForeground": "#15202b99"
         },
         "peacock.color": "#9d9ba6",
-        "prettier.configPath": ".prettierrc",
+        "prettier.configPath": ".prettierrc.cjs",
         "editor.formatOnSave": true,
         "git.enableCommitSigning": true,
         "git-graph.repository.commits.showSignatureStatus": true,

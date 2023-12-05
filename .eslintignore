@@ -11,3 +11,5 @@ storybook-static
 jest.config.ts
 jest.config.base.ts
 next.config.js 
+
+*workspace
