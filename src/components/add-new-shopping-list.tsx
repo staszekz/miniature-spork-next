@@ -17,7 +17,7 @@ const defaultValues = {
   date: new Date()
 };
 
-export const AddNewShoppingList = () => {
+export const AddNewShoppingList = ({ onClose }: { onClose: () => void }) => {
   const {
     register,
     handleSubmit,
@@ -28,16 +28,14 @@ export const AddNewShoppingList = () => {
     resolver: zodResolver(getAddNewListSchema)
   });
 
-  console.log('🚀 ~ errors:', errors);
   const onSubmit: SubmitHandler<AddNewListModalInputs> = async dataV => {
-    console.log('🚀 ~ dataV:', dataV);
-
     try {
-      const { data } = await axios<any>({
+      const { data } = await axios<AddNewListModalInputs>({
         method: 'post',
         url: '/api/list',
         data: dataV
       });
+      onClose();
       return data;
     } catch (error) {
       throw new Error("Couldn't add new list)");

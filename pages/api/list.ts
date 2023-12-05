@@ -42,6 +42,10 @@ export default async function handler(
 
       res.status(201).json(result);
       break;
+    case 'GET':
+      const shoppingList = await prisma.shoppingList.findMany();
+      res.status(200).json(shoppingList);
+      break;
     default:
       res.setHeader('Allow', ['POST']);
       res.status(405).end(`Method ${method} Not Allowed`);
