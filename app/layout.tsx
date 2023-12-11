@@ -3,6 +3,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 
 import { Layout } from '../src/templates';
+import { RQProvider } from '../src/utils/rq-provider';
 
 export const metadata = {
   title: 'Miniature spork',
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased">
         <MantineProvider>
-          <Layout>{children}</Layout>
+          <RQProvider>
+            <Layout>{children}</Layout>
+          </RQProvider>
         </MantineProvider>
       </body>
     </html>

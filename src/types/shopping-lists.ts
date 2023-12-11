@@ -22,4 +22,5 @@ export type ListElement = {
 export type CardProps = {
   list: ListElement;
   index: number;
+  handleDeleteList: () => void;
 };
