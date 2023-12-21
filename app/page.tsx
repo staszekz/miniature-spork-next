@@ -1,25 +1,30 @@
 // 'use client';
-
 import { Button, Center, Container } from '@mantine/core';
 import { HydrationBoundary, QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios, { Axios, AxiosError } from 'axios';
 import Head from 'next/head';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 
-export default async function Home() {
-  const queryClient = new QueryClient();
+// async function getProducts(host: string) {
+//   try {
+//     const res = await axios.get(`http://${host}/api/list`);
+//     return res;
+//   } catch (err) {
+//     const axiosError = err as AxiosError;
+//     throw new Error(axiosError.message);
+//   }
+// }
 
-  await queryClient
-    .prefetchQuery({
-      queryKey: ['/api/list'],
-      queryFn: aa => {
-        console.log('prefetched', queryClient, aa);
-        return axios.get('/api/list').then(res => res.data);
-      }
-    })
-    .then(data => {
-      console.log('prefetched data:', data);
-    });
+export default async function Home() {
+  // const host = headers().get('host');
+  // const queryClient = new QueryClient();
+
+  // const fetchedData= await queryClient.prefetchQuery({
+  //   queryKey: ['lista-zakupow'],
+  //   queryFn: () => getProducts(host!),
+  //   staleTime: 300000
+  // });
 
   return (
     <>
@@ -28,13 +33,11 @@ export default async function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container className="box">
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <Center>
-            <Button color="teal" component={Link} href="/shopping-lists">
-              Zobacz swoje listy zakupów
-            </Button>
-          </Center>
-        </HydrationBoundary>
+        <Center>
+          <Button color="teal" component={Link} href="/shopping-lists">
+            Zobacz swoje listy zakupów
+          </Button>
+        </Center>
       </Container>
     </>
   );
