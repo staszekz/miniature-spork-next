@@ -4,8 +4,9 @@ import { Button, Stack, Title, Group, Tooltip, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconPlaylistAdd } from '@tabler/icons-react';
 import { QueryClient, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { AddNewShoppingList, ShoppingListCard } from '@components';
 
@@ -13,10 +14,26 @@ const queryClient = new QueryClient();
 // async function fetcher(url: string) {
 //   return axios.get<string[]>(url).then(res => res.data);
 // }
-export default function ShoppingList({ data }) {
-  console.log('🚀 ~ data:', data);
-  const [opened, { open, close }] = useDisclosure(false);
 
+export async function getProducts(host: string = 'localhost:3000') {
+  try {
+    const res = await axios.get(`http://${host}/api/list`);
+    return res.data;
+  } catch (err) {
+    const axiosError = err as AxiosError;
+    throw new Error(axiosError.message);
+  }
+}
+
+export default function ShoppingList() {
+  const [opened, { open, close }] = useDisclosure(false);
+  // const { asPath } = useRouter();
+  // console.log('🚀 ~ params:', asPath);
+  const { data } = useQuery({
+    queryKey: ['lista-zakupow']
+    // , queryFn: () => getProducts()
+  });
+  // console.log('🚀 ~ data:', data);
   // const { data, error } = useSWR('/api/list', fetcher);
   // const handleDeleteList = (e: React.SyntheticEvent<HTMLButtonElement>) => {
   //   console.log('🚀 ~ id:', e);
