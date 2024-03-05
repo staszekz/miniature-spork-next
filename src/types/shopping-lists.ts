@@ -7,6 +7,9 @@ export type ListItem = {
   category?: string[];
   unit?: string;
   quantity?: number;
+  price?: number;
+  currency: string;
+  image?: string | StaticImageData;
 };
 export type AddNewListModalInputs = {
   id?: string;

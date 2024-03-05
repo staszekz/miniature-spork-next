@@ -10,44 +10,31 @@ import { useRouter } from 'next/router';
 
 import { AddNewShoppingList, ShoppingListCard } from '@components';
 
+// import { getProducts } from '../../src/components/shopping-list-async-wrapper';
+
 const queryClient = new QueryClient();
 // async function fetcher(url: string) {
 //   return axios.get<string[]>(url).then(res => res.data);
 // }
 
-export async function getProducts(host: string = 'localhost:3000') {
-  try {
-    const res = await axios.get(`http://${host}/api/list`);
-    return res.data;
-  } catch (err) {
-    const axiosError = err as AxiosError;
-    throw new Error(axiosError.message);
-  }
-}
+// export async function getProducts(host: string = 'localhost:3000') {
+//   try {
+//     const res = await axios.get(`http://${host}/api/list`);
+//     return res.data;
+//   } catch (err) {
+//     const axiosError = err as AxiosError;
+//     throw new Error(axiosError.message);
+//   }
+// }
 
 export default function ShoppingList() {
   const [opened, { open, close }] = useDisclosure(false);
-  // const { asPath } = useRouter();
-  // console.log('🚀 ~ params:', asPath);
   const { data } = useQuery({
     queryKey: ['lista-zakupow']
-    // , queryFn: () => getProducts()
+    // queryFn: () => getProducts()
   });
-  // console.log('🚀 ~ data:', data);
-  // const { data, error } = useSWR('/api/list', fetcher);
-  // const handleDeleteList = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-  //   console.log('🚀 ~ id:', e);
-  // };
-  // // server actions
-  // const { data } = useQuery({
-  //   queryKey: ['lista-zakupow'],
-  //   queryFn: () => {
-  //     console.log('sdgfsdgfsd');
-  //     return axios.get('/api/list');
-  //   }
-  // });
-  // console.log('🚀 ~ data:', data?.data);
 
+  // console.log('sfsdf', data);
   return (
     <Stack align="center" justify="space-between">
       <Modal opened={opened} onClose={close} centered closeOnClickOutside={false}>
@@ -65,7 +52,7 @@ export default function ShoppingList() {
       </Group>
 
       <Group>
-        {data?.map((list, i) => <ShoppingListCard key={list.id} list={list} index={i} handleDeleteList={() => null} />)}
+        {/* {data?.map((list, i) => <ShoppingListCard key={list.id} list={list} index={i} handleDeleteList={() => null} />)} */}
       </Group>
       <Button color="teal" mb={40} variant="outline" size="md" radius="md" href="/" component={Link}>
         Wróć

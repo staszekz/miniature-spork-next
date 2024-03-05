@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 
 import ShoppingList from '../../app/shopping-lists/shopping';
 
-async function getProducts(host: string = 'localhost:3000') {
+export async function getProducts(host: string = 'localhost:3000') {
   try {
     const res = await axios.get(`http://${host}/api/list`);
     return res.data;

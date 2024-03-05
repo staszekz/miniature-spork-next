@@ -12,8 +12,8 @@ export const ShoppingListCard = ({ index, list, handleDeleteList }: CardProps) =
       <Card.Section>
         <Image alt="List if shopping items" height={120} src="/images/shopping-list.jpg" />
       </Card.Section>
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Lista {index + 1}:</Text>
+      <Group mt="md" mb="xs">
+        <Text>Lista {index + 1}:</Text>
         <Badge color="pink" variant="light">
           Nowa
         </Badge>
