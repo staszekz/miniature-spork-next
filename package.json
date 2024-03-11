@@ -32,6 +32,7 @@
     "@mantine/nprogress": "^7.3.0",
     "@mantine/spotlight": "^7.3.0",
     "@prisma/client": "^5.5.2",
+    "@sanity/client": "^6.15.3",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.32.0",
     "@tabler/icons-react": "^2.42.0",

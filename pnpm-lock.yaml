@@ -44,6 +44,9 @@ dependencies:
   '@prisma/client':
     specifier: ^5.5.2
     version: 5.5.2(prisma@5.6.0)
+  '@sanity/client':
+    specifier: ^6.15.3
+    version: 6.15.3
   '@sanity/image-url':
     specifier: ^1.0.2
     version: 1.0.2
