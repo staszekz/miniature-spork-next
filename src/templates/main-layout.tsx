@@ -44,7 +44,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <Burger opened={opened} onClick={toggle} size="sm" color={theme.colors.gray[6]} mr="xl" />
 
           <Flex gap={10}>
-            Miniature Spork Store <IconBasketFilled />
+            Spóźnione Podróże <IconBasketFilled />
           </Flex>
         </div>
       </AppShell.Header>
