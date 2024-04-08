@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import '@mantine/core/styles.css';
+import { HeaderMegaMenu } from '../components/header-with-menu';
 
 const data = [
   { link: '/', label: 'Główna', icon: IconHome },
@@ -34,26 +35,29 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   });
 
   return (
-    <AppShell
-      padding="md"
-      header={{ height: { base: 50, md: 70 } }}
-      navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: !opened } }}
-    >
-      <AppShell.Header p="md">
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          <Burger opened={opened} onClick={toggle} size="sm" color={theme.colors.gray[6]} mr="xl" />
+    <div>
+      <HeaderMegaMenu />
+    </div>
+    // <AppShell
+    //   padding="md"
+    //   header={{ height: { base: 50, md: 70 } }}
+    //   navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: !opened } }}
+    // >
+    //   <AppShell.Header p="md">
+    //     <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+    //       <Burger opened={opened} onClick={toggle} size="sm" color={theme.colors.gray[6]} mr="xl" />
 
-          <Flex gap={10}>
-            Spóźnione Podróże <IconBasketFilled />
-          </Flex>
-        </div>
-      </AppShell.Header>
-      <AppShell.Navbar p="md" hidden={!opened}>
-        {links}
+    //       <Flex gap={10}>
+    //         Spóźnione Podróże <IconBasketFilled />
+    //       </Flex>
+    //     </div>
+    //   </AppShell.Header>
+    //   <AppShell.Navbar p="md" hidden={!opened}>
+    //     {links}
 
-        <NavLink component={Link} leftSection={<IconLogout stroke={1.5} />} label="Logout" href="/" />
-      </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
-    </AppShell>
+    //     <NavLink component={Link} leftSection={<IconLogout stroke={1.5} />} label="Logout" href="/" />
+    //   </AppShell.Navbar>
+    //   <AppShell.Main>{children}</AppShell.Main>
+    // </AppShell>
   );
 };
