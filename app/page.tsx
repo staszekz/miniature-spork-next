@@ -32,10 +32,6 @@ export default async function Home() {
           <Button color="teal" component={Link} href="/shopping-lists">
             Zobacz swoje listy zakupów
           </Button>
-
-          {/* <Container>{title}</Container> */}
-          {/* <Container>{slug}</Container> */}
-          {/* <Container>{title}</Container> */}
         </Center>
       </Container>
     </>
