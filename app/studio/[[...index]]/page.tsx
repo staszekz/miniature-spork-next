@@ -8,5 +8,3 @@
  * You can learn more about the next-sanity package here:
  * https://github.com/sanity-io/next-sanity
  */
-
-export default function StudioPage() {}

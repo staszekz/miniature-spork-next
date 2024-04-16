@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import '@mantine/core/styles.css';
+import Home from '../../app/page';
 import { HeaderMegaMenu } from '../components/header-with-menu';
 
 const data = [
@@ -37,6 +38,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <HeaderMegaMenu />
+      <Home />
     </div>
     // <AppShell
     //   padding="md"

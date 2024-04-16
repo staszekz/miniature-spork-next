@@ -2,21 +2,16 @@ import { Button, Center, Container } from '@mantine/core';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { getDatabase } from './libs/notion';
+import { getDatabase, getSinglePost } from './libs/notion';
 
-const query = `*[_type == "post"]{
-  title,
-  "categories": categories[]->title,
-  "author": author->{slug, name},
-  "bodyText": body[]{
-    "paragraph": children[0].text
-  }
-}`;
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default async function Home() {
   const res = await getDatabase(databaseId);
-  console.log(res);
+  // console.log(res[0].properties.Author.people[0].name);
+  // console.log(res[0]);
+  const { metadata, markdown } = await getSinglePost('nc-history');
+  console.log('🚀 ~ post:', metadata, markdown);
   return (
     <>
       <Head>
@@ -25,9 +20,10 @@ export default async function Home() {
       </Head>
       <Container className="box">
         <Center>
-          <Button color="teal" component={Link} href="/shopping-lists">
+          {/* <Button color="teal" component={Link} href="/shopping-lists">
             Zobacz swoje listy zakupów
-          </Button>
+          </Button> */}
+          {markdown.parent}
         </Center>
       </Container>
     </>
